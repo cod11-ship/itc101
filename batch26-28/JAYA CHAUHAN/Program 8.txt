@@ -1,17 +1,18 @@
-# Currency Converter using API
+# Random Color Generator , Get a random color from an API: 
 import requests
 
-amount = float(input("Enter amount: "))
-from_currency = input("From currency (e.g. USD): ").upper()
-to_currency = input("To currency (e.g. INR): ").upper()
-
-url = f"https://api.frankfurter.app/latest?amount={amount}&from={from_currency}&to={to_currency}"
+url = "https://www.colr.org/json/colors/random/1"
 
 response = requests.get(url)
-data = response.json()
 
 if response.status_code == 200:
-    result = data["rates"][to_currency]
-    print(f"{amount} {from_currency} = {result} {to_currency}")
+
+    data = response.json()
+
+    color = data["colors"][0]["hex"]
+
+    print("🎨 Random Color")
+    print("HEX:", "#" + color)
+
 else:
-    print("Something went wrong!")
+    print("Could not get color.")
