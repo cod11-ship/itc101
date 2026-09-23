@@ -1,16 +1,20 @@
-# Country Information API:
+ # What Should I Do Today?" Generator:
 import requests
 
-country = "India"
+url = "https://www.boredapi.com/api/activity"
 
-url = f"https://restcountries.com/v3.1/name/{country}"
 response = requests.get(url)
-if response.status_code == 200 :
-  data = response.json()
-print("Country:", data[0]["name"]["common"])
-print("Capital:", data[0]["capital"][0])
-print("Population:", data[0]["population"])
-print("Region:", data[0]["region"])
+
+if response.status_code == 200:
+
+    data = response.json()
+
+    print("\n💡 Your activity:")
+    print(data["activity"])
+
+    print("Type:", data["type"])
+    print("Participants:", data["participants"])
+
 else:
-  print("Country not found")
+    print("Couldn't find an activity.")
 
